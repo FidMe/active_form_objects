@@ -9,6 +9,6 @@ Gem::Specification.new do |s|
   s.email       = 'contact@michaelvilleneuve.fr'
   s.files       = ['lib/active_form_objects.rb']
   s.license     = 'MIT'
-  s.add_runtime_dependency(%q<activesupport>, [">= 4.2"])
-  s.add_runtime_dependency(%q<activemodel>, [">= 4.2"])
+  s.add_runtime_dependency(%q<activesupport>, ['~> 4.2'])
+  s.add_runtime_dependency(%q<activemodel>, ['~> 4.2'])
 end
