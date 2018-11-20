@@ -1,6 +1,28 @@
 ## Savings
 
-**The save block**
+Saving a Form is a **key concept**.
+
+Even though you can declare and use any method inside a Form Object, calling `save!` should be the default option.
+
+Saving a form does not necessarily imply calling `.save` on an active record object.
+You can indeed use the `save!` method to start a background job, send an email, anything...
+
+### The save! method
+
+By default, `ActiveFormObjects::Base` provides you with a `.save!` method on the instance of a form.
+
+All this does is :
+
+- validates the form validations
+- saving the given resource in a transaction
+- handling errors
+- returning the created resource
+
+Most form will in fact override the `.save!` method and add their custom logic.
+
+You can use the bellow save block in order to benefit from `ActiveFormObjects` intelligence meanwhile adding your own business logic.
+
+### The save block
 
 The most common saving use case is as follow :
 
@@ -17,7 +39,7 @@ rescue ActiveRecord::RecordInvalid => e # Catch any record invalid error
 end
 ```
 
-You can solve most of this use case by using the save block.
+You can easily clean up this use case by using the save block.
 
 Usage :
 
@@ -29,4 +51,4 @@ class TestForm < BaseForm
 end
 ```
 
-It will automatically validate the form, save, return the resource and catch & raise the actual error.
+Your form will automatically be validated, saved, the resource will be returned, and errors will be handled.

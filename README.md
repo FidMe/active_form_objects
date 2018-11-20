@@ -14,6 +14,7 @@ Slim up your controllers, handle validations outside of your models, pull out lo
 - [Installation](https://github.com/FidMe/active_form_objects#installation)
 - [The Form Layer](https://github.com/FidMe/active_form_objects#the-form-layer)
 - [A basic example](https://github.com/FidMe/active_form_objects#a-basic-example)
+- [Usage](https://github.com/FidMe/active_form_objects#usage)
 
 **Documentation**
 
@@ -105,6 +106,58 @@ A typical use case would be as follow :
 In the above example, you have two distincts ways of creating your User.
 
 Therefore you need distinct validations to handle those cases, and your model must not handle them.
+
+## Usage
+
+Using a declarated form is very simple.
+Consider this form :
+
+```ruby
+class ExampleForm < ActiveFormObjects::Base
+  resource Example
+  attributes :name
+end
+```
+
+You have two ways of using it :
+
+**Without resource**
+
+```ruby
+form = ExampleForm.new(name: 'Michael')
+
+# Will create an instance of Example
+@user = form.save!
+# => Example#{ name: 'Michael' }
+```
+
+**With resource**
+
+```ruby
+form = ExampleForm.new({ name: 'Nicolas' }, @user)
+
+# Will update the given resource
+form.save!
+# => Example#{ name: 'Nicolas' }
+```
+
+Note that you can of course override the `save!` method
+
+```ruby
+class ExampleForm < ActiveFormObjects::Base
+  def save!
+   # do nothing
+  end
+end
+```
+
+The provided `save!` method is just a helper that does
+
+- validate!
+- Uses ActiveRecord::Base.transaction
+- Returns the resource
+
+For more informations on saving, please [read the dedicated section](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
 
 ## Anything is missing ?
 
