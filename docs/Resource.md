@@ -52,5 +52,5 @@ When using a form with a given resource to update, it will simply be used :
 form = UserUpdateForm.new({ name: 'Michael' }, @user)
 
 puts form.resource
-# => User#123 { name: 'michael' }
+# => User#123 { name: 'Michael' }
 ```
