@@ -42,6 +42,8 @@ You will put all your forms inside of it.
 
 A form is just a class that extends `ActiveFormObjects::Base`.
 
+On top of all its features, `ActiveFormObjects` gives you access to the entire [Active Model](https://guides.rubyonrails.org/active_model_basics.html) stack.
+
 ## The Form layer
 
 ![The form layer](https://raw.githubusercontent.com/FidMe/active_form_objects/master/docs/images/form_layer.png)
@@ -91,7 +93,17 @@ class User
 end
 ```
 
-On top of all these feature, `ActiveFormObjects` gives use access to the entire [Active Model](https://guides.rubyonrails.org/active_model_basics.html) stack.
+### Another example
+
+Another great example where a `FormObject` becomes necessary is when you have several ways to create or update a model.
+
+A typical use case would be as follow :
+
+![form example](https://raw.githubusercontent.com/FidMe/active_form_objects/master/docs/images/registration_example.png)
+
+In the above example, you have two distincts ways of creating your User.
+
+Therefore you need distinct validations to handle those cases, and your model must not handle them.
 
 ## Anything is missing ?
 
