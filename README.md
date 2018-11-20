@@ -3,9 +3,21 @@
 [![Build Status](https://travis-ci.org/FidMe/active_form_objects.svg?branch=master)](https://travis-ci.org/FidMe/active_form_objects)
 [![Gem Version](https://badge.fury.io/rb/active_form_objects.svg)](https://badge.fury.io/rb/active_form_objects)
 
-Since making Form Objects with Rails can be a pain, this gem aims to facilitate the creation of a dedicated layer.
+Form objects are a great way to clean up your controllers and models.
 
-Slim up your controllers, handle validations outside of your models, pull out logic that does not belong to your models.
+Whenever your Rails application grows, you will eventually end up with bloated models and controllers.
+
+Even though Rails is awesome, it oftens leans you toward putting unnecessary logic in your controllers and models.
+
+Take the bull by the horns, use ActiveFormObjects, and start cleaning up your mess ! 💪
+
+A few benefits :
+
+- Keep business logic out of the Controller and models
+- Add validation support to plain Ruby object using ActiveModel
+- Display data validation errors in the form
+
+For more infos regarding this pattern, [see this blog post](https://medium.com/selleo/essential-rubyonrails-patterns-form-objects-b199aada6ec9)
 
 ## Menu
 
