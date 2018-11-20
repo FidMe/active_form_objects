@@ -5,11 +5,9 @@
 
 Form objects are a great way to clean up your controllers and models.
 
-Whenever your Rails application grows, you will eventually end up with bloated models and controllers.
+Whenever your Rails application grows, you will eventually end up with bloated models and controllers. Even though Rails is awesome, it oftens leans you toward putting unnecessary logic in your controllers and models.
 
-Even though Rails is awesome, it oftens leans you toward putting unnecessary logic in your controllers and models.
-
-Take the bull by the horns, use ActiveFormObjects, and start cleaning up your mess ! 💪
+**Take the bull by the horns, use ActiveFormObjects, and start cleaning up your mess ! 💪**
 
 A few benefits :
 
