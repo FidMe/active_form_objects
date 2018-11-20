@@ -28,13 +28,14 @@ The most common saving use case is as follow :
 
 ```ruby
 def save!
-  validate! # Validate the form, raise any errors if needed
-  ActiveRecord::Base.transaction do # Do everything in a transaction
-  # ... Do anything in between (send email, anything)
-  @resource.save! # Save the resource
+  validate!
+  ActiveRecord::Base.transaction do
+    # ... Do anything in between (send email, anything)
+    @resource.save!
+  end
   @resource # Return the resource
-rescue ActiveRecord::RecordInvalid => e # Catch any record invalid error
-  e.record.errors.add(e.record.class.name, '') # Return the errors on the actual class instead of
+rescue ActiveRecord::RecordInvalid => e
+  e.record.errors.add(e.record.class.name, '')
   raise ActiveRecord::RecordInvalid.new(e.record) # Raise the actual error
 end
 ```
