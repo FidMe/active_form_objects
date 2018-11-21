@@ -2,7 +2,7 @@
 
 The attributes declaration is a clean replacement for strong params in rails.
 
-You are problably declaring the following in your Rails controller
+You are probably declaring the following in your Rails controller
 
 ```ruby
 def user_params
@@ -69,7 +69,7 @@ If you need to create a resource that is cut into several tables, for example :
   end
 ```
 
-You may want to hide this behavior to the frontend, and thefore receive a params hash resembling to this :
+You may want to hide this behavior to the frontend, and therefore receive a params hash resembling to this :
 
 ```json
 { "name": "Michael", "email": "mvilleneuve@fidme.com", "password": "coucou" }
@@ -103,7 +103,7 @@ puts RegistrationForm.new({ any: 'lol', coucou: 'lol' })
 
 ### Default values
 
-In order to lock a value, ie: to make sure params wont be able to modify that value, you can declare :
+In order to lock a value, ie: to make sure params won't be able to modify that value, you can declare :
 
 ```ruby
 class RegistrationForm
