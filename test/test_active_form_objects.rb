@@ -36,22 +36,15 @@ class BaseFormTest < ActiveSupport::TestCase
     assert_not form.respond_to?(:siret)
   end
 
-  test 'delegate delegates params and remaps them to the right key' do
-    class DelegatorForm < ActiveFormObjects::Base; delegate :name, to: :entity; end
-    form = DelegatorForm.new(name: 'lol')
-
-    assert_equal 'lol', form.entity_params[:name]
-  end
-
   test 'heriting class has access to ActiveModel::Model' do
-    class DelegatorForm < ActiveFormObjects::Base; delegate :name, to: :entity; end
+    class DelegatorForm < ActiveFormObjects::Base;end
     form = DelegatorForm.new(name: 'lol')
 
     assert form.respond_to?(:validate!)
   end
 
   test 'resource is accessible' do
-    class DelegatorForm < ActiveFormObjects::Base; delegate :name, to: :entity; end
+    class DelegatorForm < ActiveFormObjects::Base;end
     form = DelegatorForm.new({ name: 'lol' }, 'lol')
 
     assert_equal 'lol', form.resource

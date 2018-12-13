@@ -1,8 +1,9 @@
 PATH
   remote: .
   specs:
-    active_form_objects (0.1.2)
+    active_form_objects (1.0.0.beta)
       activemodel (>= 4.2)
+      activerecord (>= 4.2)
       activesupport (>= 4.2)
 
 GEM
@@ -10,15 +11,23 @@ GEM
   specs:
     activemodel (5.2.1)
       activesupport (= 5.2.1)
+    activerecord (5.2.1)
+      activemodel (= 5.2.1)
+      activesupport (= 5.2.1)
+      arel (>= 9.0)
     activesupport (5.2.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    arel (9.0.0)
     concurrent-ruby (1.1.3)
     i18n (1.1.1)
       concurrent-ruby (~> 1.0)
+    metaclass (0.0.4)
     minitest (5.11.3)
+    mocha (1.7.0)
+      metaclass (~> 0.0.1)
     rake (12.3.1)
     thread_safe (0.3.6)
     tzinfo (1.2.5)
@@ -29,6 +38,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_form_objects!
+  mocha
   rake
 
 BUNDLED WITH
