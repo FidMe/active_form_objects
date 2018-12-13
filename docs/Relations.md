@@ -26,32 +26,38 @@ Whenever you have a form that depends on other forms, you may want to consider u
 For instance :
 
 ```ruby
-  class CustomProgramForm < BaseForm
-    set_default value: {}, to: %i[retailer content program of_user]
-    attributes :user
-
+  class CarManufacturingForm < ActiveFormObjects::Base
     def save!
-      @retailer = ProgramForm.new(@params[:retailer] || {}, retailer_to_update).save!
-      @content = ContentForm.new(@params[:content] || {}, content_to_update).save!
+      @wheels = WheelsForm.new(@params[:wheels] || {}).save!
+      @engine = EngineForm.new(@params[:engine] || {}).save!
+      @body = BodyForm.new(@params[:body] || {}).save!
 
-      UserProgramForm.new(user_program_params.merge(user: @user), @resource).save!
+      AssemblingForm.new({
+        wheels: @wheels,
+        engine: @engine,
+        body: @body
+      }).save!
     end
   end
 
-  class ProgramForm < BaseForm
-    resource Loyalty::Program
-    ensure_value :is_custom, true
-    attributes :name, :is_custom, :retailer, :content
+  class WheelsForm < ActiveFormObjects::Base
+    resource Wheel
+    attributes :size, :color
   end
 
-  class ContentForm < BaseForm
-    resource Loyalty::Scannable::Entity
-    attributes :code_type, :code_group
+  class EngineForm < ActiveFormObjects::Base
+    resource Engine
+    attributes :power, :torque
   end
 
-  class UserProgramForm < BaseForm
-    resource Loyalty::Scannable::OfUser
-    attributes :entity, :user, :value, :note
+  class BodyForm < ActiveFormObjects::Base
+    resource Body
+    attributes :size, :paint
+  end
+
+  class AssemblingForm < ActiveFormObjects::Base
+    resource Car
+    attributes :body, :wheels, :engine
   end
 end
 ```
@@ -59,9 +65,17 @@ end
 can be written :
 
 ```ruby
-class CustomProgramForm < ProgramCreationForm
-  associated :retailer, Retailer::CustomForm
-  associated :content, Scannable::EntityForm
-  associated :program, CreationForm
+class CarManufacturingForm < ActiveFormObjects::Base
+  associated :body, BodyForm
+  associated :wheels, WheelsForm
+  associated :engine, EngineForm
+
+  save do
+    AssemblingForm.new(
+      body: @body,
+      wheels: @wheels,
+      engine: @engine  
+    ).save!
+  end
 end
 ```

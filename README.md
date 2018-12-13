@@ -5,7 +5,7 @@
 
 Form objects are a great way to clean up your controllers and models.
 
-Whenever your Rails application grows, you will eventually end up with bloated models and controllers. Even though Rails is awesome, it oftens leans you toward putting unnecessary logic in your controllers and models.
+Whenever your Rails application grows, you will eventually end up with bloated models and controllers. Even though Rails is awesome, it often leads you toward putting unnecessary logic in your controllers and models.
 
 **Take the bull by the horns, use ActiveFormObjects, and start cleaning up your mess ! 💪**
 
@@ -86,13 +86,13 @@ In this case :
 ```ruby
 class RegistrationController
   def create
-    render json: RegistrationForm.new(params).save!
+    RegistrationForm.new(params).save!
   end
 end
 
 class RegistrationForm < ActiveFormObjects::Base
   resource User
-  attributes :email :password, :password_confirm
+  attributes :email, :password, :password_confirm
   validate :confirmation_match
 
   def confirmations_match
@@ -113,7 +113,7 @@ A typical use case would be as follow :
 
 ![form example](https://raw.githubusercontent.com/FidMe/active_form_objects/master/docs/images/registration_example.png)
 
-In the above example, you have two distincts ways of creating your User.
+In the above example, you have two distinct ways of creating your User.
 
 Therefore you need distinct validations to handle those cases, and your model must not handle them.
 
