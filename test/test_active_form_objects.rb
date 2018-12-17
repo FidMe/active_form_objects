@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'active_form_objects'
 require 'active_support'
 
+require_relative 'helper'
+
 class BaseFormTest < ActiveSupport::TestCase
   setup do
     @UserClass = Struct.new(:id, :friend, :friend_id) do

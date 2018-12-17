@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require 'active_form_objects'
 require 'active_support'
 
+require_relative '../helper'
+
+
 USER_CLASS = Struct.new(:id) do
   def attributes
     { id: id }

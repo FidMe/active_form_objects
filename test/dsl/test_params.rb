@@ -2,6 +2,8 @@ require 'minitest/autorun'
 require 'active_form_objects'
 require 'active_support'
 
+require_relative '../helper'
+
 class Dsl::AttributesTest < ActiveSupport::TestCase
   test 'can declare and filter params' do
     form = AttributesForm.new(id: '123', coucou: 'lol')

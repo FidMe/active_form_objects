@@ -2,6 +2,9 @@ require 'minitest/autorun'
 require 'active_form_objects'
 require 'active_support'
 
+require_relative '../helper'
+
+
 RESOURCE = Struct.new(:id) do
   def attributes
     { id: id }
@@ -20,7 +23,7 @@ class Dsl::PolymorphsTest < ActiveSupport::TestCase
     POLYMORH_RELATION
       .any_instance
       .expects(:update!)
-      .with(id: '1234')
+      .with('id' => '1234')
       .once
 
     POLYMORH_RELATION
@@ -32,12 +35,14 @@ class Dsl::PolymorphsTest < ActiveSupport::TestCase
 
     PolymorphForeignForm
       .expects(:new)
-      .with({ id: '1234' }, nil)
+      .with({ 'id' => '1234' }, nil)
       .once
       .returns(relation_to_return)
 
-    RESOURCE.any_instance.expects(:update!)
-      .with(content_id: '1234', content_type: POLYMORH_RELATION.name)
+    RESOURCE
+      .any_instance
+      .expects(:update!)
+      .with('content_id' => '1234', 'content_type' => POLYMORH_RELATION.name)
       .once
 
     form = PolymorphForm.new({

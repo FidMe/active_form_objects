@@ -34,15 +34,14 @@ module Handlers
     def handle
       @params_to_send = @params[@polymorph[:key]] || {}
       polymorph_instance = form_class.new(@params_to_send, @resource.try(@polymorph[:key])).save!
-
-      @params["#{@polymorph[:key]}_id".to_sym] = polymorph_instance.id
-      @params["#{@polymorph[:key]}_type".to_sym] = polymorph_instance.class.name
+      @params["#{@polymorph[:key]}_id"] = polymorph_instance.id
+      @params["#{@polymorph[:key]}_type"] = polymorph_instance.class.name
       @params.delete(@polymorph[:key])
     end
 
     def form_class
       @polymorph[:types][
-        @resource.try("#{@polymorph[:key]}_type".to_sym) || clean_params.try(:to_sym)
+        @resource.try("#{@polymorph[:key]}_type") || clean_params.try(:to_sym)
       ]
     end
 

@@ -3,6 +3,9 @@ require 'mocha/minitest'
 require 'active_form_objects'
 require 'active_support'
 
+require_relative '../helper'
+
+
 class Dsl::SavingsTest < ActiveSupport::TestCase
   test 'can declare save bloc' do
     # No fail when loading below class is sufficient

@@ -1,4 +1,5 @@
 require 'active_support'
+require 'active_support/core_ext/hash/indifferent_access'
 
 module Dsl
   module Attributes
@@ -8,6 +9,14 @@ module Dsl
     @@overrided_params = {}
     @@default_params = {}
     @@preparers = {}
+
+    def attrs_only(params)
+      attributes.slice(*params)
+    end
+
+    def attributes
+      instance_values.with_indifferent_access.symbolize_keys
+    end
 
     included do
       attr_accessor :params

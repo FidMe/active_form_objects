@@ -3,7 +3,8 @@ require_relative 'base'
 module Handlers
   class Delegates < Base
     def handle
-      delegates = upper :@@delegators
+      delegates = upper('@@delegators')
+
       (delegates || []).each do |delegate|
         Delegate.new(@klass, delegate).handle
       end
@@ -23,7 +24,7 @@ module Handlers
     end
 
     def handle
-      @attributes = @raw_params.slice(*@attributes).merge({
+      @attributes = @raw_params.slice(*@attributes.map(&:to_s)).merge({
         @foreign_key => @resource.id
       })
 
