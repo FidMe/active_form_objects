@@ -9,6 +9,10 @@ USER = Struct.new(:id) do
     { id: id }
   end
 
+  def reload
+    true
+  end
+
   def profile
     nil
   end
