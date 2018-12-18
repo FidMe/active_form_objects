@@ -14,7 +14,7 @@ module Dsl
       # +key+:: the corresponding key in the params hash
       # +possible_types+:: A hash that follows the below format
       #
-      # polymorph(:content, :program_id, {
+      # polymorph(:content, {
       #   foo: Bar
       # })
       #

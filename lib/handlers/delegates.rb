@@ -29,6 +29,7 @@ module Handlers
       })
 
       @form.new(@attributes, @resource.send(@relation)).save!
+      @resource.reload
     end
   end
 end

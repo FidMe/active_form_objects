@@ -14,5 +14,14 @@ module Handlers
     def upper(var)
       @klass.class.class_variable_get(var)[@klass.class.name]
     end
+
+    def raise_error(string)
+      raise ActiveFormObjects::Error.new("[#{@klass.class.name}] #{string}")
+    end
+  end
+end
+
+module ActiveFormObjects
+  class Error < RuntimeError
   end
 end

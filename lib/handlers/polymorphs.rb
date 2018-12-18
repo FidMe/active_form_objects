@@ -28,25 +28,29 @@ module Handlers
     #
     def initialize(klass, polymorph)
       @polymorph = polymorph
+
       super(klass)
     end
 
     def handle
       @params_to_send = @params[@polymorph[:key]] || {}
-      polymorph_instance = form_class.new(@params_to_send, @resource.try(@polymorph[:key])).save!
+      form = form_class
+
+      raise_error("The form resolved with key '#{@type}' seems to be nil. Check your polymorphic relation key and the associated forms.") if form.nil?
+
+      polymorph_instance = form.new(@params_to_send, @resource.try(@polymorph[:key])).save!
+
       @params["#{@polymorph[:key]}_id"] = polymorph_instance.id
       @params["#{@polymorph[:key]}_type"] = polymorph_instance.class.name
       @params.delete(@polymorph[:key])
     end
 
     def form_class
-      @polymorph[:types][
-        @resource.try("#{@polymorph[:key]}_type") || clean_params.try(:to_sym)
-      ]
-    end
+      @type = @resource.try(@polymorph[:key]).try(:type) || @params_to_send['type']
+      raise_error("No 'type' method or 'type‘ key found in params for '#{@polymorph[:key]}' polymorphic relation") if @type.nil?
 
-    def clean_params
       @params_to_send.delete(:type)
+      @polymorph[:types][@type.try(:to_sym)]
     end
   end
 end
