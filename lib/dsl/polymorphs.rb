@@ -9,7 +9,8 @@ module Dsl
 
     class PolymorphValidator < ActiveModel::EachValidator
       def validate_each(record, attribute, data)
-        return unless record.try(attribute).try(:id).nil? && 
+        return unless record.try(attribute).try(:id).nil? &&
+                      record.try("#{attribute}_id".to_sym).nil? &&
                       !options[:keys].include?(data['type'].try(:to_sym))
         record.errors.add(attribute, 'type must be included in the list')
       end
@@ -38,7 +39,7 @@ module Dsl
           key: key,
           types: possible_types
         }
-        send(:attributes, key)
+        send(:attributes, key, "#{key}_id")
       end
     end
   end
