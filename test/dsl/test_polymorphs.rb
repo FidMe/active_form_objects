@@ -54,6 +54,17 @@ class Dsl::PolymorphsTest < ActiveSupport::TestCase
     form.save!
   end
 
+  test 'polymorph relation raises validation error' do
+    form = PolymorphForm.new({
+      content: {
+        id: '1234'
+      }
+    }, RESOURCE.new)
+
+    exception = assert_raises(Exception) { form.save! }
+    assert_equal 'Validation failed: Content type must be included in the list', exception.message
+  end
+
   class PolymorphForeignForm < ActiveFormObjects::Base
     resource POLYMORH_RELATION
     attributes :id

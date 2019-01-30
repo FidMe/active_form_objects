@@ -27,7 +27,7 @@ end
 class Dsl::DelegateTest < ActiveSupport::TestCase
   test 'can delegate params to another form' do
     user_instance = USER.new('123')
-    
+
     USER
       .expects(:new)
       .once

@@ -31,6 +31,7 @@ For more infos regarding this pattern, [see this blog post](https://medium.com/s
 - [Declaring a resource](https://github.com/FidMe/active_form_objects/blob/master/docs/Resource.md)
 - [Declaring attributes](https://github.com/FidMe/active_form_objects/blob/master/docs/Attributes.md)
 - [Declaring relations](https://github.com/FidMe/active_form_objects/blob/master/docs/Relations.md)
+- [Declaring polymorphs](https://github.com/FidMe/active_form_objects/blob/master/docs/Polymorphs.md)
 - [Saving your Form](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
 - [ActiveModel](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
 

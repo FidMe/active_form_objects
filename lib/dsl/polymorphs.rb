@@ -7,6 +7,14 @@ module Dsl
 
     @@polymorphic_keys = {}
 
+    class PolymorphValidator < ActiveModel::EachValidator
+      def validate_each(record, attribute, data)
+        return unless record.try(attribute).try(:id).nil? && 
+                      !options[:keys].include?(data['type'].try(:to_sym))
+        record.errors.add(attribute, 'type must be included in the list')
+      end
+    end
+
     class_methods do
       # Allows to declare a polymorphic relationship
       #
@@ -23,6 +31,8 @@ module Dsl
       #   Scannable => model class
       #
       def polymorph(key, possible_types)
+        validates(key, polymorph: { keys: possible_types.keys })
+
         @@polymorphic_keys[name] ||= []
         @@polymorphic_keys[name] << {
           key: key,
@@ -33,3 +43,4 @@ module Dsl
     end
   end
 end
+
