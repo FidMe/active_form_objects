@@ -17,6 +17,12 @@ class RegistrationForm
 end
 ```
 
+If you do not want to add presence validations to the relation, you can add an option hash at the end of the declaration :
+
+```ruby
+  relations :entity, :user, skip_validations: true
+```
+
 ### Form associations (beta feature not sure if relevant 😄)
 
 Use case to solve :
@@ -74,7 +80,7 @@ class CarManufacturingForm < ActiveFormObjects::Base
     AssemblingForm.new(
       body: @body,
       wheels: @wheels,
-      engine: @engine  
+      engine: @engine
     ).save!
   end
 end

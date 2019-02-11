@@ -90,6 +90,15 @@ class BaseFormTest < ActiveSupport::TestCase
     assert form.errors.key?(:user), 'should have a user error key'
   end
 
+  test 'relations does not add validations if specified' do
+    class TestRelationsValidationForm < ActiveFormObjects::Base
+      relations :user, skip_validations: true
+    end
+
+    form = TestRelationsValidationForm.new({})
+    assert form.valid?
+  end
+
   test 'relations are valid when params are empty if resource already has them' do
     class AnotherFriendShipForm < ActiveFormObjects::Base
       relations :friend

@@ -26,7 +26,12 @@ module Dsl
       #   relations(:entity, :user)
       #
       def relations(*params)
-        validates(*params, relation: true)
+        options = {}
+        if params.last.is_a?(Hash)
+          options = params.last
+          params.pop
+        end
+        validates(*params, relation: true) unless options[:skip_validations]
 
         params.each do |param|
           relation_key = "#{param}_id".to_sym
