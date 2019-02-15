@@ -11,6 +11,7 @@ require_relative 'dsl/associates'
 require_relative 'dsl/polymorphs'
 
 require_relative 'handlers/initializer'
+require_relative 'handlers/inheritance'
 require_relative 'handlers/relations'
 require_relative 'handlers/resource'
 require_relative 'handlers/attributes'
@@ -27,6 +28,10 @@ module ActiveFormObjects
     include Dsl::Delegates
     include Dsl::Associates
     include Dsl::Savings
+
+    def self.inherited(subclass)
+      Handlers::Inheritance.handle(subclass, self)
+    end
 
     def initialize(params, resource = nil)
       @params = params.with_indifferent_access

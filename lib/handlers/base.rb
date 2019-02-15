@@ -7,8 +7,8 @@ module Handlers
       @resource = @klass.instance_variable_get(:@resource)
     end
 
-    def self.handle(klass)
-      new(klass).handle
+    def self.handle(*params)
+      new(*params).handle
     end
 
     def upper(var)
