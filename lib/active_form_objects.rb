@@ -36,7 +36,7 @@ module ActiveFormObjects
     end
 
     def initialize(params, resource = nil)
-      raise ActiveFormObjects::HandlerErrorn, "[#{self.class.name}] params were not correclty declared" unless params.is_a?(Hash)
+      raise ActiveFormObjects::HandlerError, "[#{self.class.name}] params were not correclty declared" unless params.is_a?(Hash)
 
       @params = params.with_indifferent_access
       @resource = resource
