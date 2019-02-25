@@ -29,12 +29,27 @@ class Dsl::HooksTest < ActiveSupport::TestCase
     }
   end
 
+  test 'can declare after_validation' do
+    form = HooksForm.new({}, nil, scope: :middle)
+
+    assert_raises('after_validation') {
+      form.save!
+    }
+  end
+
   class HooksForm < ActiveFormObjects::Base
     resource HOOK_RESOURCE
     scope :before do
       before_save :raise_something
       def raise_something
         raise 'before_save'
+      end
+    end
+
+    scope :middle do
+      after_validation :say_nothing
+      def say_nothing
+        raise 'after_validation'
       end
     end
 

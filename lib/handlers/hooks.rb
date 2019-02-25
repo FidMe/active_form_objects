@@ -33,4 +33,10 @@ module Handlers
       handle_hooks('after_save')
     end
   end
+
+  class AfterValidationsHooks < BeforeSaveHooks
+    def handle
+      handle_hooks('after_validation')
+    end
+  end
 end
