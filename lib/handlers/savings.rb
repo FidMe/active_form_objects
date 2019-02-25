@@ -4,6 +4,7 @@ require 'active_record'
 require_relative 'base'
 require_relative 'polymorphs'
 require_relative 'delegates'
+require_relative 'hooks'
 
 module Handlers
   class Savings < Base
@@ -22,6 +23,7 @@ module Handlers
 
     def after_save_hooks!
       Delegates.handle(@klass)
+      AfterSaveHooks.handle(@klass)
     end
 
     def save_with_block!(block)
@@ -35,6 +37,7 @@ module Handlers
     end
 
     def before_save_hooks!
+      BeforeSaveHooks.handle(@klass)
       Polymorphs.handle(@klass)
     end
   end

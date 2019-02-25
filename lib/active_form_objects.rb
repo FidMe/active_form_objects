@@ -9,6 +9,7 @@ require_relative 'dsl/savings'
 require_relative 'dsl/resource'
 require_relative 'dsl/polymorphs'
 require_relative 'dsl/scopes'
+require_relative 'dsl/hooks'
 
 require_relative 'handlers/base'
 require_relative 'handlers/initializer'
@@ -30,6 +31,7 @@ module ActiveFormObjects
     include Dsl::Delegates
     include Dsl::Savings
     include Dsl::Scopes
+    include Dsl::Hooks
 
     def self.inherited(subclass)
       Handlers::Inheritance.handle(subclass, self)
