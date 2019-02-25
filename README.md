@@ -28,13 +28,14 @@ For more infos regarding this pattern, [see this blog post](https://medium.com/s
 
 **Documentation**
 
-- [Declaring a resource](https://github.com/FidMe/active_form_objects/blob/master/docs/Resource.md)
-- [Declaring attributes](https://github.com/FidMe/active_form_objects/blob/master/docs/Attributes.md)
-- [Declaring relations](https://github.com/FidMe/active_form_objects/blob/master/docs/Relations.md)
-- [Declaring polymorphs](https://github.com/FidMe/active_form_objects/blob/master/docs/Polymorphs.md)
+- [Resource](https://github.com/FidMe/active_form_objects/blob/master/docs/Resource.md)
+- [Attributes](https://github.com/FidMe/active_form_objects/blob/master/docs/Attributes.md)
+- [Relations](https://github.com/FidMe/active_form_objects/blob/master/docs/Relations.md)
+- [Polymorphs](https://github.com/FidMe/active_form_objects/blob/master/docs/Polymorphs.md)
 - [Scopes](https://github.com/FidMe/active_form_objects/blob/master/docs/Scopes.md)
 - [Hooks](https://github.com/FidMe/active_form_objects/blob/master/docs/Hooks.md)
-- [Saving your Form](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
+- [Debugging](https://github.com/FidMe/active_form_objects/blob/master/docs/Debugging.md)
+- [Saving the form](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
 - [ActiveModel](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
 
 ## Installation
