@@ -1,4 +1,4 @@
-## A developer guide to ActiveFormObjects debugging
+## A developer guide to ActiveFormObjects debugging
 
 Debugging a DSL based library can be hard.
 Errors are often hidden inside the lib, raised at weird moments like class autoload, making it even harder to find the source of the problem.

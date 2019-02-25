@@ -60,7 +60,7 @@ config.eager_load = false
 
 in you test.rb file.
 
-## When should I use inheritance ?
+### When should I use inheritance ?
 
 You may prefer to use inheritance if you think that the scope DSL adds to much lines to your parent form and it starts blurring the logic.
 
