@@ -10,7 +10,6 @@ module Handlers
   class Savings < Base
     def save!(&block)
       ActiveRecord::Base.transaction do
-        before_save_hooks!
         @klass.validate!
         after_validations_hooks!
         block ? save_with_block!(block) : save_without_block!
@@ -20,10 +19,6 @@ module Handlers
     rescue ActiveRecord::RecordInvalid => e
       e.record.errors.add(e.record.class.name, '')
       raise ActiveRecord::RecordInvalid.new(e.record)
-    end
-
-    def before_save_hooks!
-      BeforeSaveHooks.handle(@klass)
     end
 
     def after_save_hooks!

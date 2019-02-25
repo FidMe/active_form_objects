@@ -171,5 +171,24 @@ class BaseFormTest < ActiveSupport::TestCase
         prepare :name, :lol
       end
     }
-  end  
+  end
+
+  test 'validate! calls before_save and returns @params' do
+    class ValidateForm < ActiveFormObjects::Base
+      before_save :add_params
+      attributes :id
+      validates :id, presence: true
+
+      def add_params
+        @params[:lol] = "coucou"
+      end
+    end
+
+    assert_raises { ValidateForm.new({}).validate! }
+
+    params = ValidateForm.new(id: "hello").validate!
+
+    assert_equal "coucou", params[:lol]
+    assert_equal "hello", params[:id]
+  end
 end

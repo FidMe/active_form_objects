@@ -1,6 +1,8 @@
 require 'active_support'
 require 'active_record'
+
 require_relative '../handlers/savings'
+require_relative '../handlers/hooks'
 
 module Dsl
   module Savings
@@ -16,6 +18,12 @@ module Dsl
 
     def save!
       Handlers::Savings.new(self).save!
+    end
+
+    def validate!
+      Handlers::BeforeSaveHooks.handle(self)
+      super
+      @params
     end
 
     def save
