@@ -32,6 +32,8 @@ For more infos regarding this pattern, [see this blog post](https://medium.com/s
 - [Declaring attributes](https://github.com/FidMe/active_form_objects/blob/master/docs/Attributes.md)
 - [Declaring relations](https://github.com/FidMe/active_form_objects/blob/master/docs/Relations.md)
 - [Declaring polymorphs](https://github.com/FidMe/active_form_objects/blob/master/docs/Polymorphs.md)
+- [Scopes](https://github.com/FidMe/active_form_objects/blob/master/docs/Scopes.md)
+- [Hooks](https://github.com/FidMe/active_form_objects/blob/master/docs/Hooks.md)
 - [Saving your Form](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
 - [ActiveModel](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
 
@@ -127,6 +129,12 @@ Consider this form :
 class ExampleForm < ActiveFormObjects::Base
   resource Example
   attributes :name
+
+  before_save :capitalize_name
+
+  def capitalize_name
+    name.capitalize!
+  end
 end
 ```
 
