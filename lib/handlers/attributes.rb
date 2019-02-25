@@ -23,7 +23,7 @@ module Handlers
     # DSL method : prepare
     def affect_prepared_values!
       (upper(:@@preparers) || []).each do |preparer|
-        @params[preparer[:key]] = @params[preparer[:key]].try(preparer[:method_to_call])
+        @params[preparer[:key]] = preparer[:lambda].try(:call, @params[preparer[:key]])
       end
     end
 

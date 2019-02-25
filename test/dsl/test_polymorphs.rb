@@ -9,12 +9,16 @@ RESOURCE = Struct.new(:id) do
   def attributes
     { id: id }
   end
+
+  def self.all;end
 end
 
 POLYMORH_RELATION = Struct.new(:id, :parent_id) do
   def attributes
     { id: id }
   end
+
+  def self.all;end
 end
 
 class Dsl::PolymorphsTest < ActiveSupport::TestCase

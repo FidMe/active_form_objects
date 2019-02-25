@@ -9,6 +9,8 @@ USER_CLASS = Struct.new(:id) do
   def attributes
     { id: id }
   end
+
+  def self.all;end
 end
 
 class Dsl::ResourceTest < ActiveSupport::TestCase

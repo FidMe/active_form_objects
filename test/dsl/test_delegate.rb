@@ -16,11 +16,17 @@ USER = Struct.new(:id) do
   def profile
     nil
   end
+
+  def self.all
+  end
 end
 
 PROFILE = Struct.new(:id, :parent_id) do
   def attributes
     { id: id }
+  end
+
+  def self.all
   end
 end
 

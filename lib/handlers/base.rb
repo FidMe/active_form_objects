@@ -16,12 +16,12 @@ module Handlers
     end
 
     def raise_error(string)
-      raise ActiveFormObjects::Error.new("[#{@klass.class.name}] #{string}")
+      raise ActiveFormObjects::HandlerError.new("[#{@klass.class.name}] #{string}")
     end
   end
 end
 
 module ActiveFormObjects
-  class Error < RuntimeError
+  class HandlerError < RuntimeError
   end
 end

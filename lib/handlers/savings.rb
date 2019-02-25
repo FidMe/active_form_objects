@@ -4,13 +4,11 @@ require 'active_record'
 require_relative 'base'
 require_relative 'polymorphs'
 require_relative 'delegates'
-require_relative 'associates'
 
 module Handlers
   class Savings < Base
     def save!(&block)
       ActiveRecord::Base.transaction do
-        return save_associated_forms! unless upper('@@associated_forms').nil?
         @klass.validate!
         before_save_hooks!
         block ? save_with_block!(block) : save_without_block!
@@ -38,10 +36,6 @@ module Handlers
 
     def before_save_hooks!
       Polymorphs.handle(@klass)
-    end
-
-    def save_associated_forms!
-      Associates.new(@klass).save_associated_forms!
     end
   end
 end

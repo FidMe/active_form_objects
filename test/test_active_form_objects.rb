@@ -52,15 +52,8 @@ class BaseFormTest < ActiveSupport::TestCase
     assert_equal 'lol', form.resource
   end
 
-  test 'set_default allows to set default value to a param' do
-    class ExampleForm < ActiveFormObjects::Base; set_default value: 'coucou', to: :entity; end
-    form = ExampleForm.new({})
-
-    assert_equal 'coucou', form.entity
-  end
-
   test 'resource can call a block' do
-    class TestModel; end
+    class TestModel; def self.all;end end
     class TestForm < ActiveFormObjects::Base
       resource do |_params|
         'BaseFormTest::TestModel'.constantize
@@ -148,14 +141,35 @@ class BaseFormTest < ActiveSupport::TestCase
     assert_equal 'Pierre', form.friend_id
   end
 
+  test 'relation raises correct error when called with weird params' do
+    class RelationWithErrorForm < ActiveFormObjects::Base
+      relations :friend
+    end
+
+    assert_raises(ActiveFormObjects::HandlerError) {
+      RelationWithErrorForm.new(friend: {
+        name: 'paul'
+      })
+    }
+  end
+
   test 'prepare can prepare an attribute by executing a method on it' do
     class PrepareForm < ActiveFormObjects::Base
       attributes :name
-      prepare :name, with: :downcase
+      prepare :name, ->(name) { name.downcase }
     end
 
     form = PrepareForm.new(name: 'CouCOUCOU')
 
     assert_equal 'coucoucou', form.name
   end
+
+  test 'prepare raises correct error' do
+    assert_raises(ActiveFormObjects::DslError) {
+      class PrepareForm < ActiveFormObjects::Base
+        attributes :name
+        prepare :name, :lol
+      end
+    }
+  end  
 end

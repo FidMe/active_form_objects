@@ -28,8 +28,18 @@ module Handlers
         @foreign_key => @resource.id
       })
 
+      proceed_debug
+
       @form.new(@attributes, @resource.send(@relation)).save!
       @resource.reload
+    end
+
+    def proceed_debug
+      return unless upper(:@@debug)
+
+      puts '👉   Processing delegate' 
+      puts "#{@form}.new(#{@attributes}, #{@resource.send(@relation) || "nil"}).save!"
+      puts ""
     end
   end
 end
