@@ -54,6 +54,12 @@ module Dsl
           key: params.first,
           lambda: lambda_to_call
         }]
+        send(:attributes, params.first)
+      end
+
+      def self.validates(*params)
+        send(:attributes, *params[0...-1])
+        super(*params)
       end
     end
   end
