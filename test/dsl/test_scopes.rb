@@ -20,6 +20,26 @@ class Dsl::ScopesTest < ActiveSupport::TestCase
     assert form.errors.key?(:id)
   end
 
+  test "multiple scope do not override declared vars" do
+    form = TestMultipleScopForm.new({}, nil, scope: :admin)
+    other = TestMultipleScopForm.new({}, nil, scope: :other)
+
+    assert_not form.coucou
+    assert other.coucou
+  end
+
+  class TestMultipleScopForm < ActiveFormObjects::Base
+    ensure_value :coucou, false
+
+    scope :admin do
+      ensure_value :coucou, false
+    end
+
+    scope :other do
+      ensure_value :coucou, true
+    end
+  end
+
   test 'cannot use undeclared scope' do
     assert_raises(ActiveFormObjects::DslError) do
       TestScopForm.new({}, nil, scope: :coucou)
