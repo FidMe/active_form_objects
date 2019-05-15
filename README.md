@@ -35,6 +35,7 @@ For more infos regarding this pattern, [see this blog post](https://medium.com/s
 - [Scopes](https://github.com/FidMe/active_form_objects/blob/master/docs/Scopes.md)
 - [Hooks](https://github.com/FidMe/active_form_objects/blob/master/docs/Hooks.md)
 - [Debugging](https://github.com/FidMe/active_form_objects/blob/master/docs/Debugging.md)
+- [Error handling](https://github.com/FidMe/active_form_objects/blob/master/docs/Errors.md)
 - [Saving the form](https://github.com/FidMe/active_form_objects/blob/master/docs/Savings.md)
 - [ActiveModel](https://api.rubyonrails.org/classes/ActiveModel/Model.html)
 
