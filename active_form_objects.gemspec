@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'active_form_objects'
-  s.version     = '2.0.3'
-  s.date        = '2019-02-26'
+  s.version     = '2.0.4'
+  s.date        = '2019-05-15'
   s.summary     = 'A step toward an hexagonal Rails architecture'
   s.description = 'Clean up your controller, slim up your models, handle more use cases'
   s.authors     = ['Michaël Villeneuve']
@@ -12,6 +12,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<activesupport>, ['>= 4.2'])
   s.add_runtime_dependency(%q<activerecord>, ['>= 4.2'])
   s.add_runtime_dependency(%q<activemodel>, ['>= 4.2'])
+  s.add_runtime_dependency('method_source', ['~> 0.9.2'])
   s.add_runtime_dependency(%q<ruby_parser>, ["~> 3.1"])
   s.add_runtime_dependency(%q<ruby2ruby>, ["> 2.4.0"])
 end

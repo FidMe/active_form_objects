@@ -4,10 +4,11 @@ require 'active_support/core_ext/hash/indifferent_access'
 require_relative 'dsl/debug'
 require_relative 'dsl/relations'
 require_relative 'dsl/attributes'
+require_relative 'dsl/error_handling'
+require_relative 'dsl/polymorphs'
 require_relative 'dsl/delegates'
 require_relative 'dsl/savings'
 require_relative 'dsl/resource'
-require_relative 'dsl/polymorphs'
 require_relative 'dsl/scopes'
 require_relative 'dsl/hooks'
 
@@ -26,6 +27,7 @@ module ActiveFormObjects
     include Dsl::Debug
     include Dsl::Resource
     include Dsl::Attributes
+    include Dsl::ErrorHandling
     include Dsl::Relations
     include Dsl::Polymorphs
     include Dsl::Delegates
