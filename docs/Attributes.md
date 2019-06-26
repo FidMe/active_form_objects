@@ -101,7 +101,7 @@ puts RegistrationForm.new({ any: 'lol', coucou: 'lol' })
 # => any: 'lol', attribute: 'your value :D', coucou: 'lol'
 ```
 
-### Default values
+### Locked values
 
 In order to lock a value, ie: to make sure params won't be able to modify that value, you can declare :
 
