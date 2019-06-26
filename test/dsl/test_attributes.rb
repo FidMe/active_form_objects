@@ -40,6 +40,26 @@ class Dsl::AttributesTest < ActiveSupport::TestCase
     assert_equal 'coucou', form.params[:entity_id]
   end
 
+  test 'remap with nil value does not create param' do
+    class ExampleForm < ActiveFormObjects::Base
+      remap :offer_id, to: :entity_id
+    end
+
+    form = ExampleForm.new({})
+    assert_not form.params.key?(:entity_id)
+    form = ExampleForm.new(offer_id: 'lol')
+    assert form.params.key?(:entity_id)
+  end
+
+  test 'remap with overrided value is left intact' do
+    class ExampleForm < ActiveFormObjects::Base
+      remap :offer_id, to: :entity_id
+    end
+
+    form = ExampleForm.new(entity_id: 'lol', offer_id: 'hihi')
+    assert_equal 'lol', form.params[:entity_id]
+  end
+
   test 'set_default can handle errors properly' do
     error = nil
     begin

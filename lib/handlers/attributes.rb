@@ -1,4 +1,5 @@
 require 'active_support/core_ext/hash/reverse_merge'
+require 'active_support/core_ext/hash/indifferent_access'
 require_relative 'base'
 require_relative 'relations'
 require_relative 'delegates'
@@ -31,7 +32,7 @@ module Handlers
     # DSL method : remap
     def remap_attributes!
       (upper(:@@remaped_params) || []).each do |remaped|
-        @params[remaped[:to]] = @raw_params[remaped[:key].to_s]
+        @params[remaped[:to]] = @raw_params[remaped[:key].to_s] if @raw_params.key?(remaped[:key].to_s) && @params[remaped[:to]].blank?
       end
     end
 

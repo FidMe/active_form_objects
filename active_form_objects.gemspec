@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'active_form_objects'
-  s.version     = '2.1.0'
+  s.version     = '2.1.1'
   s.date        = '2019-06-26'
   s.summary     = 'A step toward an hexagonal Rails architecture'
   s.description = 'Clean up your controller, slim up your models, handle more use cases'
