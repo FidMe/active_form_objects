@@ -8,6 +8,7 @@ module Dsl
 
     @@attributes = {}
     @@overrided_params = {}
+    @@remaped_params = {}
     @@default_params = {}
     @@preparers = {}
 
@@ -44,6 +45,15 @@ module Dsl
         @@overrided_params[name][param] = value
 
         send(:attributes, param)
+      end
+
+      def self.remap(key, options)
+        @@remaped_params[name] = (@@remaped_params[name] || []) + [{
+          key: key,
+          to: options[:to]
+        }]
+
+        send(:attributes, options[:to])
       end
 
       def self.prepare(*params)

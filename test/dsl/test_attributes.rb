@@ -31,6 +31,15 @@ class Dsl::AttributesTest < ActiveSupport::TestCase
     assert_equal 'coucou', form.entity
   end
 
+  test 'remap remaps an attribute to another' do
+    class ExampleForm < ActiveFormObjects::Base
+      remap :offer_id, to: :entity_id
+    end
+
+    form = ExampleForm.new(offer_id: 'coucou')
+    assert_equal 'coucou', form.params[:entity_id]
+  end
+
   test 'set_default can handle errors properly' do
     error = nil
     begin

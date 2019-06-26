@@ -8,6 +8,7 @@ module Handlers
     def handle
       start_with_default_params!
       affect_prepared_values!
+      remap_attributes!
       merge_with_resource_attributes!
       affect_relation_values!
       merge_overrided_params!
@@ -24,6 +25,13 @@ module Handlers
     def affect_prepared_values!
       (upper(:@@preparers) || []).each do |preparer|
         @params[preparer[:key]] = preparer[:lambda].try(:call, @params[preparer[:key]])
+      end
+    end
+
+    # DSL method : remap
+    def remap_attributes!
+      (upper(:@@remaped_params) || []).each do |remaped|
+        @params[remaped[:to]] = @raw_params[remaped[:key].to_s]
       end
     end
 
