@@ -115,3 +115,20 @@ end
 puts RegistrationForm.new(is_published: true)
 # => is_published: false
 ```
+
+### Remapping
+
+In order to remap a given property to another in your form you can use the remap DSL.
+
+```ruby
+class RegistrationForm
+  remap :login, to: :email
+end
+```
+
+That way whenever you call your form with the login param it will automatically given as `:email` in your form :
+
+```ruby
+RegistrationForm.new(login: 'michael@fidme.com')
+# => #<RegistrationForm @params={"email"=>"michael@fidme.com"}, @resource=nil, @raw_params={"login"=>"michael@fidme.com"}, @email="michael@fidme.com">
+```
