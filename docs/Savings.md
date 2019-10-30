@@ -52,4 +52,4 @@ class TestForm < BaseForm
 end
 ```
 
-Your form will automatically be validated, saved, the resource will be returned, and errors will be handled.
+Your form will automatically be validated, the resource will be returned, errors will be handled.
