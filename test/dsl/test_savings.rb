@@ -33,7 +33,9 @@ class Dsl::SavingsTest < ActiveSupport::TestCase
     MOCK.expects(:a_method).once
 
     class AnotherSavingForm < ActiveFormObjects::Base
+      attributes :id
       save do
+        @resource.id = id
         MOCK.a_method
       end
     end
@@ -44,7 +46,9 @@ class Dsl::SavingsTest < ActiveSupport::TestCase
       end
     end
     form = AnotherSavingForm.new({ id: '123' }, user_class.new)
-    form.save!
+    user = form.save!
+    p user
+    assert_equal '123', user.id
   end
 
   class SavingForm < ActiveFormObjects::Base

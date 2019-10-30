@@ -28,6 +28,8 @@ module Handlers
 
     def save_with_block!(block)
       @klass.instance_eval(&block)
+      @resource = @klass.instance_variable_get(:@resource)
+      @resource
     end
 
     def save_without_block!
