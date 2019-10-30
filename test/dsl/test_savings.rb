@@ -43,8 +43,6 @@ class Dsl::SavingsTest < ActiveSupport::TestCase
         { id: id }
       end
     end
-    user_class.any_instance.expects(:save!).once
-
     form = AnotherSavingForm.new({ id: '123' }, user_class.new)
     form.save!
   end
