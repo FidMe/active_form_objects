@@ -8,6 +8,7 @@ module Dsl
     @@before_save = {}
     @@after_save = {}
     @@after_validation = {}
+    @@after_commit = {}
 
     class_methods do
       def before_save(*params, &block)
@@ -23,6 +24,11 @@ module Dsl
       def after_validation(*params, &block)
         hooks = block.present? ? [block] : params
         @@after_validation[name] = (@@after_validation[name] || []) + hooks
+      end
+
+      def after_commit(*params, &block)
+        hooks = block.present? ? [block] : params
+        @@after_commit[name] = (@@after_commit[name] || []) + hooks
       end
     end
   end

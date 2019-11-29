@@ -39,4 +39,10 @@ module Handlers
       handle_hooks('after_validation')
     end
   end
+
+  class AfterCommitHooks < BeforeSaveHooks
+    def handle
+      handle_hooks('after_commit')
+    end
+  end
 end

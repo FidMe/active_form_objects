@@ -37,6 +37,14 @@ class Dsl::HooksTest < ActiveSupport::TestCase
     }
   end
 
+  test 'can declare after_commit' do
+    form = HooksForm.new({}, nil, scope: :commit)
+
+    assert_raises('after_commit') {
+      form.save!
+    }
+  end
+
   class HooksForm < ActiveFormObjects::Base
     resource HOOK_RESOURCE
     scope :before do
@@ -58,6 +66,13 @@ class Dsl::HooksTest < ActiveSupport::TestCase
       after_save :raise_something_else
       def raise_something_else
         raise 'after_save'
+      end
+    end
+
+    scope :commit do
+      after_commit :raise_something
+      def raise_something
+        raise 'after_commit'
       end
     end
   end
