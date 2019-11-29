@@ -47,7 +47,6 @@ class Dsl::SavingsTest < ActiveSupport::TestCase
     end
     form = AnotherSavingForm.new({ id: '123' }, user_class.new)
     user = form.save!
-    p user
     assert_equal '123', user.id
   end
 
