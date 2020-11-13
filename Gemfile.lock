@@ -32,7 +32,7 @@ GEM
     minitest (5.11.3)
     mocha (1.7.0)
       metaclass (~> 0.0.1)
-    rake (12.3.1)
+    rake (12.3.3)
     ruby2ruby (2.4.2)
       ruby_parser (~> 3.1)
       sexp_processor (~> 4.6)
